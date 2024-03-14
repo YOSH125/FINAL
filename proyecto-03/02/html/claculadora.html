@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Unidades</title>
+    <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><h1>CALCULADORA</h1></li>
+        </ul>
+      </nav>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            gap: 10px;
+            width: 100%;
+            padding: 10px;
+            max-width: 400px;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 10px;
+            border: 10px solid #13ce96;
+            z-index: 2;
+            color: rgb(7, 7, 7);
+            background-color: aliceblue;
+            opacity: 85%;
+        }
+        .container input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .container select {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .container button:hover {
+            opacity: 0.8;
+        }
+        nav {
+        background-color: #2ed5b0;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        height:100px;
+        width: 900px;
+        z-index: 2;
+        }
+
+        nav ul {
+        list-style-type: none;
+        padding: 2;
+        }
+
+        nav ul li {
+        float: left;;
+        }
+
+        nav ul li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 15px 65px;
+        text-decoration: none;
+        font-size: 22px;
+        border-radius: 40%;
+        }
+
+        nav ul li a:hover {
+        background-color: #15ece8;
+        }
+        h1{
+        color: rgb(21, 8, 8);
+        text-align: center;
+        font-size: 70px;
+        justify-content: center;
+        margin: 0;
+        top: 0;
+        padding: 0;
+        }
+        .code{
+        height:100%;
+        width:100% ;
+        opacity: 50%;
+         }
+         #convert-button{
+            background-color: aqua;
+            margin: auto;
+            border-radius: 50px;
+         }
+    </style>
+
+</head>
+<body>
+    <img src="img/code.jpeg" alt="code" class="code">
+    <div class="container">
+        <input type="number" id="input-value" placeholder="Ingrese valor">
+        <select id="input-unit">
+            <option value="m">Metros</option>
+            <option value="km">Kilómetros</option>
+            <option value="cm">Centímetros</option>
+            <option value="mm">Milímetros</option>
+        </select>
+        <button id="convert-button">Convertir</button>
+        <h1 id="result-value"></h1>
+        <img id="result-icon" src="" alt="Unidad de medida">
+    </div>
+    <script>
+        const inputValue = document.getElementById('input-value');
+        const inputUnit = document.getElementById('input-unit');
+        const convertButton = document.getElementById('convert-button');
+        const resultValue = document.getElementById('result-value');
+        const resultIcon = document.getElementById('result-icon');
+
+        convertButton.addEventListener('click', () => {
+            const value = parseFloat(inputValue.value);
+            const unit = inputUnit.value;
+            let convertedValue;
+
+            switch (unit) {
+                case 'm':
+                    convertedValue = value;
+                    break;
+                case 'km':
+                    convertedValue = value * 1000;
+                    break;
+                case 'cm':
+                    convertedValue = value / 100;
+                    break;
+                case 'mm':
+                    convertedValue = value / 1000;
+                   break;
+                default:
+                    convertedValue = value;
+            }
+
+            resultValue.textContent = convertedValue.toFixed(2);
+
+            switch (unit) {
+                case 'm':
+                    resultIcon.src = 'https://recursos.edu.xunta.gal/sites/default/files/recurso/1445431624/ud5/5121_applet_imagen_teoria_metro_cuadrado.png';
+                    break;
+                case 'km':
+                    resultIcon.src = 'https://recursos.edu.xunta.gal/sites/default/files/recurso/1445431624/ud5/5121_applet_imagen_teoria_metro_cuadrado.png';
+                    break;
+                case 'cm':
+                    resultIcon.src = 'https://recursos.edu.xunta.gal/sites/default/files/recurso/1445431624/ud5/5121_applet_imagen_teoria_metro_cuadrado.png';
+                    break;
+                case 'mm':
+                    resultIcon.src = 'https://recursos.edu.xunta.gal/sites/default/files/recurso/1445431624/ud5/5121_applet_imagen_teoria_metro_cuadrado.png';
+                    break;
+            }
+        });
+    </script>
+</body>
+</html>

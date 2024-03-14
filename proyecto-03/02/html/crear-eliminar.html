@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Página de Creación de Contenido</title>
+ <nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><h1>Creación de contenido</h1></li>
+  </ul>
+</nav>
+
+ <style>
+   body {
+    font-family: Arial, sans-serif;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 100vh;
+     margin: 0;
+   }
+
+   #content-container {
+     width: 80%;
+     max-width: 600px;
+     text-align: center;
+     position: absolute;
+     display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 10px;
+      border: 10px solid #13ce96;
+      max-width: 700px;
+      z-index: 2;
+      color: rgb(7, 7, 7);
+      background-color: aliceblue;
+      opacity: 85%;
+   }
+
+   input[type="text"], textarea {
+     width: 100%;
+     padding: 8px;
+     margin-bottom: 10px;
+     box-sizing: border-box;
+   }
+
+   button {
+     padding: 10px 16px;
+     cursor: pointer;
+     margin: auto;
+     border-radius: 50px;
+   }
+
+   #create-btn {
+     background-color: green;
+     color: white;
+     border-radius: 50px;
+     font-size: 15px;
+   }
+
+   #delete-btn {
+     background-color: yellow;
+     font-size: 15px;
+   }
+
+   #clear-btn {
+     background-color: red;
+     color: white;
+     font-size: 15px;
+   }
+   nav {
+        background-color: #2ed5b0;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        height:100px;
+        width: 900px;
+        z-index: 2;
+        }
+
+        nav ul {
+        list-style-type: none;
+        padding: 2;
+        }
+
+        nav ul li {
+        float: left;;
+        }
+
+        nav ul li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 15px 65px;
+        text-decoration: none;
+        font-size: 22px;
+        border-radius: 40%;
+        }
+
+        nav ul li a:hover {
+          background-color: #15ece8;
+        }
+        h1{
+        color: rgb(21, 8, 8);
+        text-align: center;
+        font-size: 60px;
+        justify-content: center;
+        margin: 0;
+        top: 0;
+        padding: 0;
+        }
+        .code{
+        height:100%;
+        width:100% ;
+        opacity: 50%;
+         }
+         .image{
+          background-color: #9ff5db;
+         }
+         input[type="file"]{
+     width: 100%;
+     padding: 8px;
+     margin-bottom: 10px;
+     box-sizing: border-box;
+   }
+ </style>
+ 
+</head>
+<body>
+  <img src="img/code.jpeg" alt="code" class="code">
+ <div id="content-container">
+   <h2>Creación de Contenido</h2>
+   <input type="file" id="image-input" accept="image/*" class="image">
+   <input type="text" id="title-input" placeholder="Título">
+   <input type="text" id="date-input" placeholder="Fecha" readonly>
+   <textarea id="content-input" placeholder="Contenido/Descripción" rows="5"></textarea>
+   <button id="create-btn">Crear</button>
+   <button id="delete-btn">Eliminar último</button>
+   <button id="clear-btn">Limpiar</button>
+   <div id="content-list"></div>
+ </div>
+
+ <script>
+   const imageInput = document.getElementById('image-input');
+   const titleInput = document.getElementById('title-input');
+   const dateInput = document.getElementById('date-input');
+   const contentInput = document.getElementById('content-input');
+   const createBtn = document.getElementById('create-btn');
+   const deleteBtn = document.getElementById('delete-btn');
+   const clearBtn = document.getElementById('clear-btn');
+   const contentList = document.getElementById('content-list');
+
+   let contentData = [];
+
+   // Función para generar la fecha actual
+   function getCurrentDate() {
+     const today = new Date();
+     const year = today.getFullYear();
+     const month = String(today.getMonth() + 1).padStart(2, '0');
+     const day = String(today.getDate()).padStart(2, '0');
+     return `${year}-${month}-${day}`;
+   }
+
+   // Función para crear el contenido
+   function createContent() {
+     const title = titleInput.value.trim();
+     const content = contentInput.value.trim();
+     const date = getCurrentDate();
+     const image = imageInput.files[0];
+
+     if (title && content) {
+       const contentItem = { title, content, date, image };
+       contentData.unshift(contentItem);
+       renderContentList();
+       clearInputs();
+     }
+   }
+
+   // Función para eliminar el último contenido
+   function deleteLastContent() {
+     if (contentData.length > 0) {
+       contentData.pop();
+       renderContentList();
+     }
+   }
+
+   // Función para limpiar la lista de contenido
+   function clearContentList() {
+     contentData = [];
+     renderContentList();
+   }
+
+   // Función para renderizar la lista de contenido
+   function renderContentList() {
+     contentList.innerHTML = '';
+     for (const content of contentData) {
+       const contentDiv = document.createElement('div');
+       const imageElement = document.createElement('img');
+       const titleElement = document.createElement('h2');
+       const dateElement = document.createElement('p');
+       const contentElement = document.createElement('p');
+
+       imageElement.src = URL.createObjectURL(content.image);
+       titleElement.textContent = content.title;
+       dateElement.textContent = content.date;
+       contentElement.textContent = content.content;
+
+       contentDiv.appendChild(imageElement);
+       contentDiv.appendChild(titleElement);
+       contentDiv.appendChild(dateElement);
+       contentDiv.appendChild(contentElement);
+       contentList.appendChild(contentDiv);
+     }
+   }
+
+   // Función para limpiar los campos de entrada
+   function clearInputs() {
+     titleInput.value = '';
+     contentInput.value = '';
+     imageInput.value = '';
+     dateInput.value = getCurrentDate();
+   }
+
+   // Evento de clic para el botón "Crear"
+   createBtn.addEventListener('click', createContent);
+
+   // Evento de clic para el botón "Eliminar último"
+   deleteBtn.addEventListener('click', deleteLastContent);
+
+   // Evento de clic para el botón "Limpiar"
+   clearBtn.addEventListener('click', clearContentList);
+
+   // Establecer la fecha actual en el campo de fecha
+   dateInput.value = getCurrentDate();
+ </script>
+</body>
+</html>

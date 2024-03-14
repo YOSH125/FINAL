@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información del Alumno</title>
+    <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><h1>SOBRE MI</h1></li>
+        </ul>
+      </nav>
+
+    <style>
+        body {
+            font-family: "Bebas Neue", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            padding: 10px;
+            border: 10px solid #13ce96;
+            max-width: 700px;
+            align-items: center;
+            text-align: center;
+            z-index: 2;
+            position: absolute;
+            color: rgb(7, 7, 7);
+            background-color: aliceblue;
+            opacity: 85%;
+        }
+        .container img {
+            width: 215px;
+            height: 215px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        nav {
+        background-color: #2ed5b0;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        height:100px;
+        width: 900px;
+        opacity: 80%;
+        z-index: 2;
+        }
+
+        nav ul {
+        list-style-type: none;
+        padding: 2;
+        }
+
+        nav ul li {
+        float: left;;
+        }
+
+        nav ul li a {
+        display: block;
+        color: rgb(0, 0, 0);
+        text-align: center;
+        padding: 15px 65px;
+        text-decoration: none;
+        font-size: 30px;
+        border-radius: 40%;
+        z-index: 2;
+        }
+
+        nav ul li a:hover {
+            background-color: #15ece8;
+        }
+
+        h1{
+        color: rgb(21, 8, 8);
+        text-align: center;
+        font-size: 80px;
+        justify-content: center;
+        margin: 0;
+        top: 0;
+        padding: 0;
+        z-index: 2;
+        }
+
+        .code{
+            height:100% ;
+            width:100% ;
+            opacity: 50%;
+        }
+        .div2{
+            z-index: 2;
+            font-size: 22px;
+        }
+    </style>
+
+</head>
+<body>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+        <img src="img/code.jpeg" alt="code" class="code">
+ <div class="container">
+        <img src="img/WhatsApp Image 2024-03-12 at 4.36.53 PM (1).jpeg" alt="alumno">
+    <div class="div2">   
+        <h2>DALILA</h2>
+        <p>Edad: 20 años</p>
+        <p><strong>Descripción:</strong>
+         developer, le gusta la música rock y la comida mexicana.</p>
+    </div>
+</div>
+</body>
+</html>

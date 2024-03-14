@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Página de Contenido</title>
+ <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="crear-eliminar.html">Features</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="ourwork.html">Our Work</a></li>
+    </ul>
+  </nav>
+
+ <style>
+   body {
+    font-family: Arial, sans-serif;
+     margin: 0;
+     padding: 20px;
+     background-color: rgb(245, 246, 246);
+     opacity: 90%;
+   }
+
+   #content-list {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+     grid-gap: 20px;
+     z-index: 2;
+   }
+
+   .content-item {
+     border: 1px solid #ccc;
+     padding: 20px;
+     min-width: 300px;
+     max-width: 500px;
+     min-height: 400px;
+     max-height: 600px;
+     overflow: hidden;
+     z-index: 2;
+   }
+
+   .content-item img {
+     max-width: 100%;
+     height: auto;
+   }
+
+   .content-item h2 {
+     margin-top: 10px;
+     margin-bottom: 5px;
+   }
+
+   .content-item p {
+     margin-top: 5px;
+     margin-bottom: 10px;
+   }
+   nav {
+        background-color: #2ed5b0;
+        position: absolute;
+        top: 0;
+        height:100px;
+        width: 900px;
+        z-index: 2;
+        text-align: center;
+        }
+
+        nav ul {
+        list-style-type: none;
+        padding: 2;
+        }
+
+        nav ul li {
+        float: left;;
+        }
+
+        nav ul li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 15px 65px;
+        text-decoration: none;
+        font-size: 22px;
+        border-radius: 40%;
+        }
+
+        nav ul li a:hover {
+          background-color: #15ece8;
+        }
+ </style>
+
+</head>
+<body>
+ <h1>Contenido Creado</h1>
+ <div id="content-list"></div>
+
+ <script>
+   // Datos de contenido (asumiendo que se cargan desde la lista global)
+   const contentData = [
+     {
+       title: 'Título 1',
+       content: 'Descripción del contenido 1...',
+       date: '2023-03-13',
+       image: 'https://via.placeholder.com/300x200.png?text=Imagen+1'
+     },
+     {
+       title: 'Título 2',
+       content: 'Descripción del contenido 2...',
+       date: '2023-03-12',
+       image: 'https://via.placeholder.com/300x200.png?text=Imagen+2'
+     },
+     // Agrega más elementos de contenido aquí
+   ];
+
+   const contentList = document.getElementById('content-list');
+
+   function renderContentList() {
+     contentList.innerHTML = '';
+     for (const content of contentData) {
+       const contentDiv = document.createElement('div');
+       contentDiv.classList.add('content-item');
+
+       const imageElement = document.createElement('img');
+       imageElement.src = content.image;
+       imageElement.alt = content.title;
+
+       const titleElement = document.createElement('h2');
+       titleElement.textContent = content.title;
+
+       const dateElement = document.createElement('p');
+       dateElement.textContent = `Fecha: ${content.date}`;
+
+       const contentElement = document.createElement('p');
+       contentElement.textContent = content.content;
+
+       contentDiv.appendChild(imageElement);
+       contentDiv.appendChild(titleElement);
+       contentDiv.appendChild(dateElement);
+       contentDiv.appendChild(contentElement);
+       contentList.appendChild(contentDiv);
+     }
+   }
+
+   renderContentList();
+ </script>
+</body>
+</html>
